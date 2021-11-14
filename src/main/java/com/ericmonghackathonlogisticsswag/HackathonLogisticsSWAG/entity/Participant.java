@@ -45,6 +45,15 @@ public class Participant {
         this.tshirtSize = tshirtSize;
     }
 
+    public Participant(Long id, String name, String email, String contactNumber, String teamName, String tshirtSize) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.contactNumber = contactNumber;
+        this.teamName = teamName;
+        this.tshirtSize = tshirtSize;
+    }
+
     public void setRedemption(Redemption redemption) {
         this.redemption = redemption;
     }
