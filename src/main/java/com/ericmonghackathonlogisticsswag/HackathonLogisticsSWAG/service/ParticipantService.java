@@ -10,6 +10,6 @@ public interface ParticipantService {
     Participant getByName(String name);
     Participant getByEmail(String email);
     Participant add(Participant participantInfo);
-    void updateDetails(Long id, Participant participantInfo);
-    void updateTShirtSize(Long id, String tShirtSize);
+    Participant updateDetails(Long id, Participant participantInfo);
+    Participant updateTShirtSize(Long id, String tShirtSize);
 }

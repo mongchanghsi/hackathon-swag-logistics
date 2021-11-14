@@ -56,17 +56,16 @@ public class ParticipantServiceImpl implements ParticipantService {
 
     @Override
     public Participant add(Participant participantInfo) {
-        System.out.println("I am here");
         Optional<Participant> participantByEmail = participantRepository.findByEmail(participantInfo.getEmail());
         if(participantByEmail.isPresent()) {
-            throw new BadRequestException("Participant already exist");
+            throw new BadRequestException(String.format("Participant of email %s already exist", participantInfo.getEmail()));
         }
 
         return participantRepository.save(participantInfo);
     }
 
     @Override
-    public void updateDetails(Long id, Participant participantInfo) {
+    public Participant updateDetails(Long id, Participant participantInfo) {
         Optional<Participant> participantById = participantRepository.findById(id);
         if(participantById.isEmpty()) {
             throw new NotFoundException(String.format("Participant of id %s does not exist", id));
@@ -81,10 +80,12 @@ public class ParticipantServiceImpl implements ParticipantService {
         participantObj.setTshirtSize(participantInfo.getTshirtSize());
 
         participantRepository.save(participantObj);
+
+        return participantById.get();
     }
 
     @Override
-    public void updateTShirtSize(Long id, String tShirtSize) {
+    public Participant updateTShirtSize(Long id, String tShirtSize) {
         Optional<Participant> participantById = participantRepository.findById(id);
         if(participantById.isEmpty()) {
             throw new NotFoundException(String.format("Participant of id %s does not exist", id));
@@ -94,5 +95,7 @@ public class ParticipantServiceImpl implements ParticipantService {
         participantObj.setTshirtSize(tShirtSize);
 
         participantRepository.save(participantObj);
+
+        return participantById.get();
     }
 }
