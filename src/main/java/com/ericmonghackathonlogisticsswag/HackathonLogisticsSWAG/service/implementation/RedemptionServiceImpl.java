@@ -29,7 +29,7 @@ public class RedemptionServiceImpl implements RedemptionService {
     public Redemption getRedemptionById(Long id) {
         Optional<Redemption> redemptionById = redemptionRepository.findById(id);
         if (redemptionById.isEmpty()) {
-            throw new NotFoundException(String.format("Redemption of %s does not exist", id));
+            throw new NotFoundException(String.format("Redemption of id %s does not exist", id));
         }
 
         return redemptionById.get();
@@ -39,7 +39,7 @@ public class RedemptionServiceImpl implements RedemptionService {
     public void redeemSelfById(Long id) {
         Optional<Participant> participantById = participantRepository.findById(id);
         if (participantById.isEmpty()) {
-            throw new NotFoundException(String.format("Participant of %s does not exist", id));
+            throw new NotFoundException(String.format("Participant of id %s does not exist", id));
         }
 
         Participant participantObj = participantById.get();
@@ -59,7 +59,7 @@ public class RedemptionServiceImpl implements RedemptionService {
     public void redeemTeamById(Long id) {
         Optional<Participant> participantById = participantRepository.findById(id);
         if (participantById.isEmpty()) {
-            throw new NotFoundException(String.format("Participant of %s does not exist", id));
+            throw new NotFoundException(String.format("Participant of id %s does not exist", id));
         }
 
         List<Participant> participantByTeamName = participantRepository.findByTeamName(participantById.get().getTeamName());
